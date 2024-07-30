@@ -1,4 +1,6 @@
-# Smartloop - A Platform to Convert Documents into Contexts using LLM
+
+<img src="https://github.com/user-attachments/assets/b30e2c38-dc19-49a5-973d-51e1dafe5c4d" width="100%" />
+
 
 Use the CLI to upload, manage and query documents based on fine-tuned foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
 
