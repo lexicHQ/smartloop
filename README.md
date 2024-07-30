@@ -16,20 +16,8 @@ pip install -U smartloop-cli
 ```
 Once installed, check that everything is setup correclty:
 
+![image](https://github.com/user-attachments/assets/eb41df67-d71d-4042-85ee-f1f8b72c0137)
 
-```
-$ smartloop-cli --help
-
- Usage: main.py [OPTIONS] COMMAND [ARGS]...
-
-│ login     Login using a token from https://api.smartloop.ai/v1/redoc                                                                                                            │
-│ project                                                                                                                                                                         │
-│ run       Starts a chat session with a selected project                                                                                                                         │
-│ upload    Upload documents for a slected project                                                                                                                                │
-│ whoami    Find out which account you are logged in
-
-
-```
 
 ## Creating Account
 
