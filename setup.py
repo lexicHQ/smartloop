@@ -15,7 +15,7 @@ install_requires = [
 setup(
     name='smartloop-cli',
     description='Smartloop Command Line interface to process documents using LLM',
-    version='1.0.4',
+    version='1.0.5',
     author_email='mehfuz@smartloop.ai',
     author='Smartloop Inc.',
     url='https://github.com/SmartloopHQ/smartloop-cl',

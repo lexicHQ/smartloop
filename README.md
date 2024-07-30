@@ -1,4 +1,4 @@
-# Smartloop - Convert Documents into Contexts
+# Smartloop CLI
 
 Use the CLI to upload, manage and query documents based on fine-tuned foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
 
