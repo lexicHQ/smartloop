@@ -1,4 +1,4 @@
-# Smartloop Document Processing CLI
+# Smartloop - Convert Documents into Contexts
 
 Use the CLI to upload, manage and query documents based on fine-tuned foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
 
@@ -132,4 +132,7 @@ If you have any questions or suggestions, please feel free to reach out to hello
 * [Smartloop API Documentation](https://api.smartloop.ai/v1/redoc)
 
 
+
 ## License
+
+This project is licensed under the terms of the MIT license.
