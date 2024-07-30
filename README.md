@@ -49,15 +49,7 @@ Login to the CLI in the follwoing way using the token recevied in email:
 smartloop-cli login
 ```
 
-This command will prompt you for your token, copy and pase the token that you have recevied in your email
-
-```bash
-python main.py login
-
-```
-
-
-Next step it to create a  project, you can do so with the following command:
+This command will prompt you for your token, copy and pase the token that you have recevied in your email. Next step it to create a  project, you can do so with the following command:
 
 ```bash
 smartloop-cli project create --name Lexic
