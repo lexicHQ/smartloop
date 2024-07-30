@@ -1,6 +1,6 @@
-# Smartloop Command Line Interface
+# Smartloop Document Processing CLI
 
-Smartloop CLI to upload, managed and chat with documents fine-tuned using foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
+Use the CLI to upload, manage and query documents based on fine-tuned foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
 
 ## Requirements
 
