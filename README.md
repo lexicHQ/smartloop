@@ -9,7 +9,7 @@ Use the CLI to upload, manage and query documents based on fine-tuned foundation
 
 - Python 3.11
 
-## Getting Started
+## Installation
 
 Install the CLI with the following command:
 
@@ -22,7 +22,7 @@ Once installed, check that everything is setup correclty:
 ![image](https://github.com/user-attachments/assets/eb41df67-d71d-4042-85ee-f1f8b72c0137)
 
 
-## Creating Account
+## Creating an Account
 
 First create an account using the `curl` command below, in Linux / macOS / WSL 2.0 / Ubuntu:
 
@@ -41,7 +41,7 @@ curl --location --request PUT 'https://api.smartloop.ai/v1/users' \
 
 You will receive an email with the `token` that is needed to login into the CLI.
 
-## Setting up the CLI
+## Setup
 
 Login to the CLI in the follwoing way using the token recevied in email:
 
