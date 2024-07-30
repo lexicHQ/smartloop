@@ -3,7 +3,8 @@
 
 <br/>
 
-Use the CLI to upload, manage and query documents based on fine-tuned foundational LLM models. It uses the smartloop API to manage projects and documents and gives you the power to quickly process contents using LLM and reason based on them
+Use the CLI to upload, manage, and query documents based on fine-tuned LLM models. It uses the smartloop API to manage projects and documents and gives you an easy way to quickly process contents and reason based on it.
+
 
 ## Requirements
 
@@ -98,6 +99,13 @@ In order to switch a default project, use the following command:
 ```
 smartloop-cli project select 
 ```
+
+## Supported Documents types
+
+* PDF
+* DOCX
+* TXT (soon)
+* CSV (soon)
 
 
 ## Contributing
