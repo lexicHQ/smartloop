@@ -60,23 +60,15 @@ smartloop-cli login
 
 This command will prompt you for your token, copy and pase the token that you have recevied in your email
 
-```
-$ python main.py login
-                       _    _
- ___ _ __   __ _  _ _ | |_ | | ___  ___  _ __
-(_-<| '  \ / _` || '_||  _|| |/ _ \/ _ \| '_ \ _
-/__/|_|_|_|\__,_||_|   \__||_|\___/\___/| .__/(_)
-                                        |_|
-
-You can generatate your token from /users/token endpoint
-Enter your token (Token will be invisitble):
+```bash
+python main.py login
 
 ```
 
 
 Next step it to create a  project, you can do so with the following command:
 
-```
+```bash
 smartloop-cli project create --name Lexic
 ```
 
@@ -84,19 +76,19 @@ smartloop-cli project create --name Lexic
 
 Once the project is created , upload documents from your folder or a specific file, in this case I am uploading the a document describing Microsoft online services form my local machine
 
-```
-smartloop-cli upload --path=~/OnlineSvcsConsolidatedSLA\(WW\)\(English\)\(June2024\)\(CR\).docx
+```bash
+smartloop-cli upload --path=~/document1.pdf
 ```
 
 ## Run It
 
 Finally, once the document is uploaded and processed, run the CLI to query:
 
-```
+```bash
 smartloop-cli run
 ```
 
-This will bring up the following interface:
+This will bring up the prompt to query your information from your uploaded document
 
 ```
 $ smartloop-cli run
@@ -139,3 +131,5 @@ If you have any questions or suggestions, please feel free to reach out to hello
 
 * [Smartloop API Documentation](https://api.smartloop.ai/v1/redoc)
 
+
+## License

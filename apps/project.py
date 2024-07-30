@@ -24,28 +24,37 @@ class Project:
     def select() -> dict:
         profile = UserProfile.load()
         projects = Projects(profile).get_all()	
+        
         _projects = [f"{proj['title']}({proj['name']})" for proj in projects]
-
-        projects_list = [
-            inquirer.List(
-                "project",
-                message="Select a project from the options below",
-                choices=_projects,
-            ),
-        ]
-        answer = inquirer.prompt(projects_list, theme=GreenPassion())
-        name = re.findall('\(([^)]+)\)', answer['project'])[0]
-
-        selected = [project for project in projects if project.get('name') == name][0]
         
-        profile['project'] = selected
-        
-        UserProfile.save(profile)
+        try:
+            projects_list = [
+                inquirer.List(
+                    "project",
+                    message="Select a project from the options below",
+                    choices=_projects,
+                ),
+            ]
 
-        console.print(f"Default project set to: [underline]{selected['name']}[/underline]")
+            answer = inquirer.prompt(projects_list, theme=GreenPassion())
+            current_selection =  answer.get('project') if answer is not None else None
 
-        return selected
+            if current_selection is not None:
+                name = re.findall('\(([^)]+)\)', current_selection)[0]
 
+                selected = [project for project in projects if project.get('name') == name][0]
+                
+                profile['project'] = selected
+                
+                UserProfile.save(profile)
+
+                console.print(f"Default project set to: [underline]{selected['name']}[/underline]")
+                
+                return selected
+        except Exception as ex:
+            console.print(ex)
+
+     
     @app.command(short_help="List all projects")
     def list():
         profile = UserProfile.load()
