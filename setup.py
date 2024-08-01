@@ -4,6 +4,8 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
+from smartloop import __version__
+
 install_requires = [
     'PyYAML==6.0.1',
     'requests==2.32.3',
@@ -15,7 +17,7 @@ install_requires = [
 setup(
     name='smartloop-cli',
     description='Smartloop Command Line interface to process documents using LLM',
-    version='1.0.5',
+    version=__version__,
     author_email='mehfuz@smartloop.ai',
     author='Smartloop Inc.',
     url='https://github.com/SmartloopHQ/smartloop-cl',

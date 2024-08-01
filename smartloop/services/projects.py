@@ -1,8 +1,8 @@
+import posixpath
 import requests
 import os
 
-from constants import endpoint
-from utils import UserProfile
+from smartloop.constants import endpoint
 
 class Projects:
     def __init__(self, profile: dict):
@@ -19,3 +19,10 @@ class Projects:
         projects = data['projects']
 
         return projects
+    
+    def set_config(self, config:dict):
+        project_id = self.profile.get('project')['id']
+        
+        url = posixpath.join(endpoint, project_id, 'config')
+        resp = requests.post(url, headers={'x-api-key': self.profile.get('token')}, json=config)
+        resp.raise_for_status()

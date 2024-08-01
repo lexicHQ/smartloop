@@ -1,6 +1,6 @@
 import os
 import yaml
-from constants import homedir
+from smartloop.constants import homedir
 
 class UserProfile:
     @staticmethod
@@ -19,4 +19,4 @@ class UserProfile:
     @staticmethod
     def save(profile:dict):
         with open(os.path.join(homedir, 'user.yaml'), 'w+') as outfile:
-            yaml.dump(profile, outfile, default_flow_style=False)
+            yaml.dump(dict(profile), outfile, default_flow_style=False)

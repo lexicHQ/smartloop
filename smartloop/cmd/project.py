@@ -9,9 +9,9 @@ import json
 import inquirer
 from inquirer.themes import GreenPassion
 
-from services import Projects
-from constants import endpoint
-from utils import UserProfile
+from smartloop.services import Projects
+from smartloop.constants import endpoint
+from smartloop.utils import UserProfile
 
 from rich.console import Console
 
@@ -90,3 +90,13 @@ class Project:
             UserProfile.save(profile)
         else:
             console.print("No project found")
+
+    @app.command(short_help="Set temparature")
+    def set(temp: Annotated[float, typer.Option(help="Set a temparature between 0.0 and 1.0")]):
+        profile = UserProfile.load()
+        selected = profile.get('project', None)
+        # project is selected
+        if selected is not None:
+            Projects(profile).set_config(dict(temparature=temp))
+        else:
+            console.print('[red] No project is selected[/red]')

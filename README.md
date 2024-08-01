@@ -100,6 +100,16 @@ In order to switch a default project, use the following command:
 smartloop-cli project select 
 ```
 
+In order to set `temparature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
+
+```bash 
+smartloop-cli project set --temp=0.3
+```
+
+`LLM temperature is a parameter that influences the language model's output, determining whether the output is more random and creative or more predictable.`
+
+The higher value tends towards more creative answer
+
 ## Supported Documents types
 
 * PDF
