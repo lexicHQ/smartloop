@@ -10,6 +10,9 @@ def signal_handler (signal_received, frame):
 	console.print(f"\n[blue]Bye![/blue]\n")
 	exit(0)
 
-if __name__ == "__main__":	
+def bootstrap():
 	signal(SIGINT, signal_handler)
 	app.bootstrap()
+
+if __name__ == "__main__":	
+	bootstrap()
