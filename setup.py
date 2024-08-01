@@ -11,7 +11,8 @@ install_requires = [
     'requests==2.32.3',
     'typer==0.12.3',
     'art==6.2',
-    'inquirer==3.3.0'
+    'inquirer==3.3.0',
+    'tabulate==0.9.0'
 ]
 
 setup(
@@ -20,7 +21,7 @@ setup(
     version=__version__,
     author_email='mehfuz@smartloop.ai',
     author='Smartloop Inc.',
-    url='https://github.com/SmartloopHQ/smartloop-cl',
+    url='https://github.com/SmartloopHQ/smartloop-cli',
     keywords=['LLM', 'framework', 'llama3', 'phi3', 'platform'],
     packages=find_packages(exclude=['tests*']),
     py_modules=['main', 'constants'],

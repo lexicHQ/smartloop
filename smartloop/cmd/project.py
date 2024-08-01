@@ -4,7 +4,8 @@ import requests
 import posixpath
 import os
 import re
-import json
+
+from tabulate import tabulate
 
 import inquirer
 from inquirer.themes import GreenPassion
@@ -59,11 +60,20 @@ class Project:
     def list():
         profile = UserProfile.load()
         project = profile.get('project', None)
+        
+        print_project = lambda x :tabulate(x, headers=['current','id', 'title', 'name', 'temp'])
+        
         projects = Projects(profile).get_all()
-        _ = [
-            console.print(f"{ '*' if project is not None and proj['id'] == project['id']else ' '} {proj['title']}({proj['name']})")
+
+        console.print(print_project([
+            ['[*]' if project is not None and proj['id'] == project['id']else '[ ]', 
+             proj['id'], 
+             proj['title'], 
+             proj['name'],
+             proj['config'].get('temparature', 0.3)
+            ]
             for proj in projects
-        ]
+        ]))
 
 
     @app.command(short_help="Create a new project")
