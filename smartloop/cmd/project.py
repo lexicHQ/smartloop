@@ -70,7 +70,7 @@ class Project:
              proj['id'], 
              proj['title'], 
              proj['name'],
-             proj['config'].get('temparature', 0.3)
+             proj.get('config', dict()).get('temparature', 0.3)
             ]
             for proj in projects
         ]))
