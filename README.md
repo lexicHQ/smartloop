@@ -94,7 +94,7 @@ Enter message (Ctrl-C to exit):
 ```
 
 
-In order to switch a default project, use the following command:
+In order to select a default project, use the following command:
 
 ```
 smartloop-cli project select 
@@ -103,12 +103,35 @@ smartloop-cli project select
 In order to set `temparature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
 
 ```bash 
-smartloop-cli project set --temp=0.3
+smartloop-cli project set --id=project_id --temp=0.3
+
 ```
 
 `LLM temperature is a parameter that influences the language model's output, determining whether the output is more random and creative or more predictable.`
 
 The higher value tends towards more creative answer
+
+To get the project Id , use the following, the will also show you the currently selected project:
+
+```bash
+smartloop-cli project list
+```
+Example output:
+
+```
+current    id                        title
+---------  ------------------------  ---------
+[*]        66a6cbd7240ef036d4a304c5  lexic
+[ ]        66a7d8f2240ef036d4a304d0  bankinter
+[ ]        66a86c5f7b4107faa06aeebe  amazon
+
+```
+
+To delete a project, use:
+
+```bash
+smartloop-cli project delete --id=project_id
+```
 
 ## Supported Documents types
 
