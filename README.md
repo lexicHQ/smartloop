@@ -116,16 +116,6 @@ To get the project Id , use the following, the will also show you the currently 
 ```bash
 smartloop-cli project list
 ```
-Example output:
-
-```
-current    id                        title
----------  ------------------------  ---------
-[*]        66a6cbd7240ef036d4a304c5  lexic
-[ ]        66a7d8f2240ef036d4a304d0  bankinter
-[ ]        66a86c5f7b4107faa06aeebe  amazon
-
-```
 
 To delete a project, use:
 
