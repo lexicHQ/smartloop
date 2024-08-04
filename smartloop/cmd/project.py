@@ -61,16 +61,14 @@ class Project:
         profile = UserProfile.load()
         project = profile.get('project', None)
         
-        print_project = lambda x :tabulate(x, headers=['current','id', 'title', 'name', 'temp'])
+        print_project = lambda x :tabulate(x, headers=['current', 'id', 'title'])
         
         projects = Projects(profile).get_all()
 
         console.print(print_project([
             ['[*]' if project is not None and proj['id'] == project['id']else '[ ]', 
-             proj['id'], 
-             proj['title'], 
-             proj['name'],
-             proj.get('config', dict()).get('temparature', 0.3)
+             proj['id'],
+             proj['title']
             ]
             for proj in projects
         ]))
@@ -88,25 +86,59 @@ class Project:
         except Exception as ex:
             print(ex)
 
-    @app.command(short_help="Set the default project")
-    def set(id: Annotated[str, typer.Option(help="project Id to use")]):
-        profile = UserProfile.load()
-        projects = Projects(profile).get_all()
-        project = [project for project in projects if project.get('id') == id]
 
-        if len(project) > 0:
-            profile['project'] = project[0]
-            console.print(f"{project[0]['title']} as set as default project")
-            UserProfile.save(profile)
+    @app.command(short_help="get project")
+    def get(id: Annotated[str, typer.Option(help="id of the project")]):
+       
+        try:
+            profile = UserProfile.load()
+            projects = [
+                project for project in Projects(profile).get_all() 
+                if project.get('id') == id
+            ]
+
+            if len(projects) > 0:
+                project_properties = []
+                expected_keys = ['id', 'title', 'name', 'config', 'created_at']
+                for key, value in projects[0].items():
+                    if key in expected_keys:
+                        if key == 'config':
+                            for key, value in value.items():
+                                project_properties.append([key, value])
+                        else:    
+                            project_properties.append([key, value])
+
+                console.print(tabulate(project_properties, headers=['Name', 'Value']))
+            else:
+                console.print("[red]No project found[/red]")
+        except Exception as ex:
+            print(ex)
+
+    @app.command(short_help="Set project properties")
+    def set(id: Annotated[str, typer.Option(help="project Id to use")], temp: Annotated[float, typer.Option(help="Set a temparature between 0.0 and 1.0")] = 0.3):
+        profile = UserProfile.load()
+        projects = [
+            project for project in Projects(profile).get_all() 
+            if project.get('id') == id
+        ]
+        # check for length
+        if len(projects) > 0:
+            profile['project'] = projects[0]
+            Projects(profile).set_config(dict(temparature=temp))
         else:
             console.print("No project found")
 
-    @app.command(short_help="Set temparature")
-    def set(temp: Annotated[float, typer.Option(help="Set a temparature between 0.0 and 1.0")]):
+    @app.command(short_help="Delete a project")
+    def delete(id: Annotated[str, typer.Option(help="project Id to use")]):
         profile = UserProfile.load()
-        selected = profile.get('project', None)
-        # project is selected
-        if selected is not None:
-            Projects(profile).set_config(dict(temparature=temp))
+        projects = [
+            project for project in Projects(profile).get_all() 
+            if project.get('id') == id
+        ]
+        # check for length
+        if len(projects) > 0:
+            profile['project'] = projects[0]
+            Projects(profile).delete()
+            console.print("Project deleted successfully")
         else:
-            console.print('[red] No project is selected[/red]')
+            console.print("No project found")
