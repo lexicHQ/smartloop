@@ -19,6 +19,7 @@ from rich.console import Console
 from signal import signal, SIGINT
 from art import text2art
 from pathlib import Path
+from urllib.parse import urlparse
 
 from smartloop.constants import endpoint, homedir
 
@@ -34,7 +35,7 @@ app = typer.Typer()
 app.add_typer(Project.app, name='project' , short_help= "Manage projects")
 
 def select_project() -> dict:
-	profile = UserProfile.load()
+	profile = UserProfile.current_profile()
 	projects = Projects(profile).get_all()
 	# must have a project created earlier
 	if len(projects) > 0:
@@ -51,10 +52,14 @@ def login():
 
 	token  = getpass.getpass('Enter your token (Token will be invisitble): ')
 
-	UserProfile.save(dict(token=token))
+	user_profile = UserProfile.load()
+	user_profile[urlparse(endpoint).hostname] = dict(token=token)
+
+	UserProfile.save(user_profile)
 
 	try:
-		Projects(UserProfile.load()).get_all()
+		current_profile = UserProfile.current_profile()
+		Projects(current_profile).get_all()
 		console.print('[green]Successfuly logged in[/green]')
 		console.print('Next up explore [cyan]project[/cyan] or use [cyan]run[/cyan] to chat with a document')
 	except:
@@ -64,7 +69,7 @@ def chat_to_project(project_id: str):
 	user_input = input('Enter message (Ctrl-C to exit): ')
 	url = posixpath.join(endpoint, project_id, 'messages')
 
-	profile =  UserProfile.load()
+	profile =  UserProfile.current_profile()
 	token = profile.get('token')
 
 	uid = str(uuid.uuid4())
@@ -124,7 +129,7 @@ def chat_to_project(project_id: str):
 @app.command(short_help="Starts a chat session with a selected project")
 def run():
 	try:
-		profile = UserProfile.load()
+		profile = UserProfile.current_profile()
 		# check if logged in
 		if 'token' in profile.keys():
 			if 'project' in profile.keys():
@@ -146,7 +151,7 @@ def run():
 
 @app.command(short_help="Upload documents for a slected project")
 def upload(path: Annotated[str, typer.Option(help="folder or file path")]):
-	profile = UserProfile.load()
+	profile = UserProfile.current_profile()
 	project = profile.get('project', None)
 	
 	# check if a project is selected
@@ -210,6 +215,7 @@ def upload(path: Annotated[str, typer.Option(help="folder or file path")]):
 								break
 						else:
 							break
+						time.sleep(1)
 					progress.stop()
 					console.print("Completed.")
 			except Exception as ex:
@@ -219,7 +225,7 @@ def upload(path: Annotated[str, typer.Option(help="folder or file path")]):
 @app.command(short_help="Find out which account you are logged in")
 def whoami():
 	try:
-		profile = UserProfile.load()
+		profile = UserProfile.current_profile()
 		token = profile.get('token')
 
 		url = posixpath.join(endpoint, 'users')

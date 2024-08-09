@@ -1,6 +1,9 @@
 import os
 import yaml
+from urllib.parse import urlparse
+
 from smartloop.constants import homedir
+from smartloop.constants import endpoint
 
 class UserProfile:
     @staticmethod
@@ -15,6 +18,10 @@ class UserProfile:
             print(ex)
 
         return dict()
+    
+    @staticmethod
+    def current_profile() -> dict:
+        return UserProfile.load().get(urlparse(endpoint).hostname, dict())
     
     @staticmethod
     def save(profile:dict):

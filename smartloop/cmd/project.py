@@ -1,9 +1,11 @@
-from typing import Annotated
 import typer
 import requests
 import posixpath
 import os
 import re
+
+from typing import Annotated
+from urllib.parse import urlparse
 
 from tabulate import tabulate
 
@@ -23,8 +25,8 @@ class Project:
 
     @app.command(short_help="Select a project")
     def select() -> dict:
-        profile = UserProfile.load()
-        projects = Projects(profile).get_all()	
+        profile = UserProfile.current_profile()
+        projects = Projects(profile).get_all()
         
         _projects = [f"{proj['title']}({proj['name']})" for proj in projects]
         
@@ -46,8 +48,11 @@ class Project:
                 selected = [project for project in projects if project.get('name') == name][0]
                 
                 profile['project'] = selected
+               
+                user_profile = UserProfile.load()
+                user_profile[urlparse(endpoint).hostname] = profile
                 
-                UserProfile.save(profile)
+                UserProfile.save(user_profile)
 
                 console.print(f"Default project set to: [underline]{selected['name']}[/underline]")
                 
@@ -58,7 +63,7 @@ class Project:
      
     @app.command(short_help="List all projects")
     def list():
-        profile = UserProfile.load()
+        profile = UserProfile.current_profile()
         project = profile.get('project', None)
         
         print_project = lambda x :tabulate(x, headers=['current', 'id', 'title'])
@@ -77,7 +82,7 @@ class Project:
     @app.command(short_help="Create a new project")
     def create(name: Annotated[str, typer.Option(help="The name of the project")]):
         url = posixpath.join(endpoint, 'projects')
-        profile = UserProfile.load()
+        profile = UserProfile.current_profile()
         try:
             resp = requests.put(url, headers={'x-api-key': profile['token']}, json=dict(title=name))
             resp.raise_for_status()
@@ -91,7 +96,7 @@ class Project:
     def get(id: Annotated[str, typer.Option(help="id of the project")]):
        
         try:
-            profile = UserProfile.load()
+            profile = UserProfile.current_profile()
             projects = [
                 project for project in Projects(profile).get_all() 
                 if project.get('id') == id
@@ -116,7 +121,7 @@ class Project:
 
     @app.command(short_help="Set project properties")
     def set(id: Annotated[str, typer.Option(help="project Id to use")], temp: Annotated[float, typer.Option(help="Set a temparature between 0.0 and 1.0")] = 0.3):
-        profile = UserProfile.load()
+        profile = UserProfile.current_profile()
         projects = [
             project for project in Projects(profile).get_all() 
             if project.get('id') == id
@@ -130,7 +135,7 @@ class Project:
 
     @app.command(short_help="Delete a project")
     def delete(id: Annotated[str, typer.Option(help="project Id to use")]):
-        profile = UserProfile.load()
+        profile = UserProfile.current_profile()
         projects = [
             project for project in Projects(profile).get_all() 
             if project.get('id') == id
