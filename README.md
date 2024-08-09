@@ -6,7 +6,7 @@
 Use the CLI to upload, manage, and query documents based on fine-tuned LLM models. It uses the smartloop API to manage projects and documents and gives you an easy way to quickly process contents and reason based on it.
 
 
-![PyPI - Version](https://img.shields.io/pypi/v/smartloop-cli)
+![PyPI - Version](https://img.shields.io/pypi/v/smartloop)
 
 ## Requirements
 
@@ -17,7 +17,7 @@ Use the CLI to upload, manage, and query documents based on fine-tuned LLM model
 Install the CLI with the following command:
 
 ```
-pip install -U smartloop-cli
+pip install -U smartloop
 
 ```
 Once installed, check that everything is setup correclty:
@@ -48,14 +48,14 @@ You will receive an email with the `token` that is needed to login into the CLI.
 
 Login to the CLI in the follwoing way using the token recevied in email:
 
-```
-smartloop-cli login
+```bash
+smartloop login
 ```
 
 This command will prompt you for your token, copy and pase the token that you have recevied in your email. Next step it to create a  project, you can do so with the following command:
 
 ```bash
-smartloop-cli project create --name Lexic
+smartloop project create --name Lexic
 ```
 
 ## Upload Document
@@ -63,7 +63,7 @@ smartloop-cli project create --name Lexic
 Once the project is created , upload documents from your folder or a specific file, in this case I am uploading the a document describing Microsoft online services form my local machine
 
 ```bash
-smartloop-cli upload --path=~/document1.pdf
+smartloop upload --path=~/document1.pdf
 ```
 
 ## Run It
@@ -71,7 +71,7 @@ smartloop-cli upload --path=~/document1.pdf
 Finally, once the document is uploaded and processed, run the CLI to query:
 
 ```bash
-smartloop-cli run
+smartloop run
 ```
 
 This will bring up the prompt to query your information from your uploaded document
@@ -105,7 +105,7 @@ smartloop-cli project select
 In order to set `temparature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
 
 ```bash 
-smartloop-cli project set --id=project_id --temp=0.3
+smartloop project set --id=project_id --temp=0.3
 
 ```
 
@@ -116,13 +116,13 @@ The higher value tends towards more creative answer
 To get the project Id , use the following, the will also show you the currently selected project:
 
 ```bash
-smartloop-cli project list
+smartloop project list
 ```
 
 To delete a project, use:
 
 ```bash
-smartloop-cli project delete --id=project_id
+smartloop project delete --id=project_id
 ```
 
 ## Supported Documents types

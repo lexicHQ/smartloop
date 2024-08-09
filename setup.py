@@ -16,13 +16,13 @@ install_requires = [
 ]
 
 setup(
-    name='smartloop-cli',
+    name='smartloop',
     description='Smartloop Command Line interface to process documents using LLM',
     version=__version__,
     author_email='mehfuz@smartloop.ai',
     author='Smartloop Inc.',
-    url='https://github.com/SmartloopHQ/smartloop-cli',
-    keywords=['LLM', 'framework', 'llama3', 'phi3', 'platform'],
+    url='https://github.com/LexicHQ/smartloop',
+    keywords=['LLM', 'framework', 'llama3', 'phi3', 'platform', 'document'],
     packages=find_packages(exclude=['tests*']),
     py_modules=['main', 'constants'],
     license='LICENSE.txt',
@@ -40,6 +40,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        smartloop-cli=main:bootstrap
+        smartloop=main:bootstrap
     '''
 )
