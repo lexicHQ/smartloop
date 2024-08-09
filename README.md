@@ -6,6 +6,8 @@
 Use the CLI to upload, manage, and query documents based on fine-tuned LLM models. It uses the smartloop API to manage projects and documents and gives you an easy way to quickly process contents and reason based on it.
 
 
+![PyPI - Version](https://img.shields.io/pypi/v/smartloop-cli)
+
 ## Requirements
 
 - Python 3.11
