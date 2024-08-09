@@ -39,7 +39,7 @@ def select_project() -> dict:
 	projects = Projects(profile).get_all()
 	# must have a project created earlier
 	if len(projects) > 0:
-		return Project.use()
+		return Project.select()
 	
 	raise "No project has been created"
 
