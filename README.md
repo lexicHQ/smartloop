@@ -20,7 +20,7 @@ Install the CLI with the following command:
 pip install -U smartloop
 
 ```
-Once installed, check that everything is setup correclty:
+Once installed, check that everything is setup correctly:
 
 ![image](https://github.com/user-attachments/assets/eb41df67-d71d-4042-85ee-f1f8b72c0137)
 
@@ -46,13 +46,13 @@ You will receive an email with the `token` that is needed to login into the CLI.
 
 ## Setup
 
-Login to the CLI in the follwoing way using the token recevied in email:
+Login to the CLI in the following way using the token received in email:
 
 ```bash
 smartloop login
 ```
 
-This command will prompt you for your token, copy and pase the token that you have recevied in your email. Next step it to create a  project, you can do so with the following command:
+This command will prompt you for your token, copy and pase the token that you have received in your email. Next step it to create a  project, you can do so with the following command:
 
 ```bash
 smartloop project create --name Lexic
@@ -102,7 +102,7 @@ In order to select a default project, use the following command:
 smartloop-cli project select 
 ```
 
-In order to set `temparature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
+In order to set `temperature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
 
 ```bash 
 smartloop project set --id=project_id --temp=0.3
