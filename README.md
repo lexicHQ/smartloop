@@ -22,7 +22,7 @@ pip install -U smartloop
 ```
 Once installed, check that everything is setup correctly:
 
-![image](https://github.com/user-attachments/assets/eb41df67-d71d-4042-85ee-f1f8b72c0137)
+![image](https://github.com/user-attachments/assets/0a4e0221-d2f7-4f87-9fb2-5e4ce7a23f62)
 
 
 ## Creating an Account
