@@ -77,7 +77,7 @@ smartloop run
 This will bring up the prompt to query your information from your uploaded document
 
 ```
-$ smartloop-cli run
+$ smartloop run
 Current project: Microsoft(microsoft-24-07-2024)
 Enter message (Ctrl-C to exit): what the SLA for azure open ai
 ⠋
@@ -99,7 +99,7 @@ Enter message (Ctrl-C to exit):
 In order to select a default project, use the following command:
 
 ```
-smartloop-cli project select 
+smartloop project select 
 ```
 
 In order to set `temperature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
