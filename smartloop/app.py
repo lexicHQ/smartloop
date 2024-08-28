@@ -1,5 +1,3 @@
-import glob
-import http
 import sys
 from typing import Annotated
 import requests
@@ -8,17 +6,13 @@ import os
 import typer
 import uuid
 import getpass
-import yaml
 import time
-import hashlib
 import posixpath
-import mimetypes
 
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from rich.console import Console
 from signal import signal, SIGINT
 from art import text2art
-from pathlib import Path
 from urllib.parse import urlparse
 
 from smartloop.constants import endpoint, homedir
@@ -147,80 +141,6 @@ def run():
 			login()
 	except Exception as ex:
 		console.print(ex)
-
-
-@app.command(short_help="Upload documents for a slected project")
-def upload(path: Annotated[str, typer.Option(help="folder or file path")]):
-	profile = UserProfile.current_profile()
-	project = profile.get('project', None)
-	
-	# check if a project is selected
-	if project is None:
-		project = select_project()
-
-	path = os.path.expanduser(path)
-	
-	console.print(f"[green]Upload to project: [underline]{project.get('title')}({project.get('name')})[/green][/underline]")
-
-	url = posixpath.join(endpoint, f"{project['id']}/documents")
-
-	files = []
-
-	if os.path.isdir(path):
-		files = glob.glob(os.path.join(path, '*.pdf'))
-		# extend file types
-		files.extend(glob.glob(os.path.join(path, '*.docx')))
-		files.extend(glob.glob(os.path.join(path, '*.txt')))
-	else:
-		files.append(path)
-
-	for file in files:
-		console.print(f"Uploading {file}")
-		with Progress(SpinnerColumn()) as progress:
-			task = progress.add_task("uploading...")
-			progress.start()
-			try:
-				with open(file, 'rb') as infile:
-					mimetype = mimetypes.guess_type(file)
-					resp = requests.put(url, headers={
-						'x-api-key': profile['token']
-					}, 
-					files={
-						'file': (Path(infile.name).name, infile.read(), mimetype[0])
-					})
-					
-					# handled error
-					if resp.status_code == http.HTTPStatus.BAD_REQUEST:
-						progress.stop()
-						console.print(f"[red]{resp.json()['detail']}[/red]")
-						return
-
-					resp.raise_for_status()
-
-					data = resp.json()
-					progress.console.print("Uploaded.")
-					progress.console.print("Processing document...")
-					while True:
-						if 'id' in data:
-							# wait for document to be processed
-							url = posixpath.join(endpoint, project.get('id'), 'documents', data['id'])
-							resp =requests.get(url, headers={
-								'x-api-key': profile['token']
-							})
-							resp.raise_for_status()
-							_data = resp.json()
-							document = _data.get('data', None)
-							# check if not pending 
-							if document is None or not document.get('pending', False):
-								break
-						else:
-							break
-						time.sleep(1)
-					progress.stop()
-					console.print("Completed.")
-			except Exception as ex:
-				console.print(f"[red]{ex}[/red]")
-
 
 @app.command(short_help="Find out which account you are logged in")
 def whoami():

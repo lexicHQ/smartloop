@@ -58,13 +58,37 @@ This command will prompt you for your token, copy and pase the token that you ha
 smartloop project create --name Lexic
 ```
 
+To get the project Id , use the following, the will also show you the currently selected project:
+
+```bash
+smartloop project list
+```
+
+To delete a project, use:
+
+```bash
+smartloop project delete --id=project_id
+```
+
 ## Upload Document
 
 Once the project is created , upload documents from your folder or a specific file, in this case I am uploading the a document describing Microsoft online services form my local machine
 
 ```bash
-smartloop upload --path=~/document1.pdf
+smartloop upload --id=<project_id> --path=~/document1.pdf
 ```
+
+
+
+## Select a project
+
+Use the following command to interactively select a project:
+
+
+```bash
+smartloop project select
+```
+
 
 ## Run It
 
@@ -76,8 +100,7 @@ smartloop run
 
 This will bring up the prompt to query your information from your uploaded document
 
-```
-$ smartloop run
+```bash
 Current project: Microsoft(microsoft-24-07-2024)
 Enter message (Ctrl-C to exit): what the SLA for azure open ai
 ⠋
@@ -113,23 +136,11 @@ smartloop project set --id=project_id --temp=0.3
 
 The higher value tends towards more creative answer
 
-To get the project Id , use the following, the will also show you the currently selected project:
-
-```bash
-smartloop project list
-```
-
-To delete a project, use:
-
-```bash
-smartloop project delete --id=project_id
-```
-
 ## Supported Documents types
 
 * PDF
 * DOCX
-* TXT (soon)
+* TXT
 * CSV (soon)
 
 
