@@ -89,10 +89,9 @@ Use the following command to interactively select a project:
 smartloop project select
 ```
 
-
 ## Run It
 
-Finally, once the document is uploaded and processed, run the CLI to query:
+Finally, once project is selected, document you have uploaded and processed, run the CLI to prompt:
 
 ```bash
 smartloop run
@@ -116,13 +115,6 @@ The SLA (Service Level Agreement) for Azure OpenAI is not explicitly mentioned i
 Please note that this is not a direct quote from the provided text, but rather an inference based on the format and structure of the SLA mentioned for other Azure services (e.g., SAP HANA on Azure High Availability Pair). To confirm the actual SLA for Azure OpenAI, you should check the official Microsoft documentation or contact their support team.
 
 Enter message (Ctrl-C to exit):
-```
-
-
-In order to select a default project, use the following command:
-
-```
-smartloop project select 
 ```
 
 In order to set `temperature` of your conversation, which ranges from 0.0 to 1.0, use the following command:
