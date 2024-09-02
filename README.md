@@ -149,6 +149,7 @@ If you have any questions or suggestions, please feel free to reach out to hello
 ## References
 
 * [Smartloop API Documentation](https://api.smartloop.ai/v1/redoc)
+* [Meta LLaMA](https://research.facebook.com/publications/llama-open-and-efficient-foundation-language-models/)
 
 
 
