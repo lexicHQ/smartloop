@@ -25,28 +25,12 @@ Once installed, check that everything is setup correctly:
 ![image](https://github.com/user-attachments/assets/0a4e0221-d2f7-4f87-9fb2-5e4ce7a23f62)
 
 
-## Creating an Account
-
-First create an account using the `curl` command below, in Linux / macOS / WSL 2.0 / Ubuntu:
-
-
-```
-curl --location --request PUT 'https://api.smartloop.ai/v1/users' \
---header 'Content-Type: application/json' \
---header 'Accept: application/json' \
---data '{
-  "email": "<string>",
-  "password": "<string>",
-  "name": "<string>"
-}'
-
-```
-
-You will receive an email with the `token` that is needed to login into the CLI.
-
 ## Setup
 
-Login to the CLI in the following way using the token received in email:
+* Create a free [account](https://app.smartloop.ai/signup), verify and configure your account
+* Copy your [developer token](https://app.smartloop.ai/developer) to the clipboard
+
+Once you have your token, run the following command in your terminal:
 
 ```bash
 smartloop login
