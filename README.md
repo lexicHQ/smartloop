@@ -26,7 +26,7 @@ Once installed, check that everything is setup correctly:
 
 
 ## Setup
-Create a free [account](https://app.smartloop.ai/signup), verify and configure your account. Once verfied, copy your [developer token](https://app.smartloop.ai/developer) to the clipboard
+First you will need to create a free [account](https://app.smartloop.ai/signup), verify and configure your account. Once verfied, copy your [developer token](https://app.smartloop.ai/developer) to the clipboard
 
 Once you have your token, run the following command in your terminal:
 
