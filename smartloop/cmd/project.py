@@ -199,7 +199,7 @@ class Project:
                         })
                         
                         # handled error
-                        if resp.status_code == http.HTTPStatus.BAD_REQUEST:
+                        if resp.status_code not in [http.HTTPStatus.CREATED, http.HTTPStatus.OK]:
                             progress.stop()
                             console.print(f"[red]{resp.json()['detail']}[/red]")
                             return
